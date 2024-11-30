@@ -1,0 +1,296 @@
+.chatLog {
+    max-height: 65vh;
+    min-height: 65vh;
+    overflow-y: auto;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+.msgContainer {
+    display: flex;
+    margin: 1rem 0;
+}
+
+.msgContainer.own {
+    justify-content: end;
+}
+
+.chatContent {
+    border: 1px solid #ccc;
+    max-width: 50%;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    box-shadow: 1px 2px 2px 0px #ccc;
+}
+
+.chatMsgUser {
+    font-weight: 500;
+    font-size: large;
+}
+
+.chatMsgContent {
+    line-height: 1.1rem;
+}
+
+.inputContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.chatSection {
+    display: flex;
+    justify-content: center;
+    color: var(--color-text-deep-dark);
+
+}
+
+.chatArticle {
+    width: 75%;
+    margin: 20px 1rem;
+}
+
+.chatArticle:last-child {
+    width: 25%;
+}
+
+.inputChatMsg {
+    all: unset;
+    margin: 0;
+    padding: 0;
+    line-height: 2.5rem;
+    box-sizing: border-box;
+    flex-grow: 1;
+}
+
+.btn-chatSend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0D0D0D;
+    color: white;
+    border-radius: 50%;
+    border: 1px solid #0D0D0D;
+    transition: ease-in-out 0.25s;
+    padding: 10px;
+    aspect-ratio: 1 / 1;
+}
+
+.btn-chatSend:hover {
+    background-color: #525252;
+}
+
+.btn-chatSend svg {
+    width: 20px;
+    height: 20px;
+}
+
+.user-list-chat {
+    padding: 0;
+    list-style-type: none;
+}
+
+.user-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #dfdfdf;
+    font-weight: 500;
+    border: 1px solid #ccc;
+    border-left: 5px solid #8f8f8f;
+    border-bottom: 4px solid #ccc;
+    margin: 6px 0;
+    padding: 6px;
+    border-radius: 6px;
+    transition: ease-in-out 0.1s;
+}
+
+.user-item:hover {
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.svgContainer {
+    display: flex;
+    gap: 5px;
+}
+
+.user-item span {
+    border: 1px solid var(--color-text-deep-dark);
+    padding: 5px;
+    border-radius: 999rem;
+    transition: ease-in-out 0.2s;
+    cursor: pointer;
+}
+
+.user-item span:hover {
+    cursor: pointer;
+}
+
+.user-item .chatSvg {
+    --size: 1.2rem;
+    height: var(--size);
+    width: var(--size);
+    fill: var(--color-text-deep-dark);
+    transition: ease-in-out 0.2s;
+    cursor: pointer;
+}
+
+.user-item .itemProfile:hover svg {
+    fill: #5a9bd8;
+}
+
+.user-item .itemProfile:hover {
+    border: 1px solid #5a9bd8;
+    background-color: #e6f3ff;
+    transform: scale(1.2);
+}
+
+.user-item:not(.isBlocked, .isBlockedme) .itemChat:hover svg {
+    fill: #3da523;
+}
+
+.user-item:not(.isBlocked, .isBlockedme) .itemChat:hover {
+    border: 1px solid #3da523;
+    background-color: #e0ffd8;
+    transform: scale(1.2);
+}
+
+.user-item:not(.isBlocked, .isBlockedme) .itemPlay:hover svg {
+    fill: #8842b6;
+}
+
+.user-item:not(.isBlocked, .isBlockedme) .itemPlay:hover {
+    border: 1px solid #8842b6;
+    background-color: #f0dcff;
+    transform: scale(1.2);
+}
+
+
+.user-item .itemBlock:hover svg {
+    fill: #d62c2c;
+}
+
+.user-item .itemBlock:hover {
+    border: 1px solid #d62c2c;
+    background-color: #ffd8d8;
+    transform: scale(1.2);
+}
+
+.user-item .itemUnblock:hover svg {
+    fill: #3da523;
+}
+
+.user-item .itemUnblock:hover {
+    border: 1px solid #3da523;
+    background-color: #e0ffd8;
+    transform: scale(1.2);
+}
+
+.user-item.isBlocked {
+    background-color: #ffe3e3;
+    border: 1px solid #ca6767;
+    border-left: 5px solid #ca6767;
+    border-bottom: 4px solid #ca6767;
+    color: var(--color-text-deep-dark);
+    font-weight: 500;
+    transition: ease-in-out 0.1s;
+}
+
+.user-item.isBlocked:hover:not(.isBlockedme) {
+    border-left: 1px solid #ca6767;
+    border-bottom: 1px solid #ca6767;
+}
+.user-item.isBlockedme {
+    background-color: #b3b3b3;
+    border: 1px dashed var(--color-text-deep-dark);
+    color: #ca6767;
+    font-weight: 500;
+    transition: ease-in-out 0.1s;
+}
+
+.user-item.isBlockedme span:not(.itemProfile, .itemUnblock) {
+    cursor: not-allowed;
+}
+
+.user-item.isBlocked span:not(.itemProfile, .itemUnblock) {
+    cursor: not-allowed;
+}
+
+.user-item.isBlocked .itemChat,
+.user-item.isBlocked .itemPlay,
+.user-item.isBlockedme .itemChat,
+.user-item.isBlockedme .itemPlay {
+    opacity: 0.6;
+}
+
+.userInfo .chatAvatar {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.userInfo .first-group {
+    justify-content: center;
+    gap: 2rem;
+}
+
+.userInfo .first-group #userInfoUsername {
+    font-weight: 500;
+    font-size: larger;
+    text-transform: uppercase;
+}
+
+.waitingSvgContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 65vh;
+    min-height: 65vh;
+}
+
+.waitingSvgContainer .loader {
+    width: 50px;
+    padding: 8px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--color-text-deep-dark);
+    --_m: 
+      conic-gradient(#0000 10%,#000),
+      linear-gradient(#000 0 0) content-box;
+    -webkit-mask: var(--_m);
+            mask: var(--_m);
+    -webkit-mask-composite: source-out;
+            mask-composite: subtract;
+    animation: l3 1s infinite linear;
+  }
+  @keyframes l3 {to{transform: rotate(1turn)}}
+
+  .btnNotifContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+  }
+
+  .btnNotifContainer button {
+    border: 1px solid #60A5FA;
+    border-radius: 5px;
+    padding: 2px;
+    transition: ease-in-out 0.15s;
+  }
+
+  .btnNotifContainer button:hover {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+
+  .btnNotifContainer button svg {
+    height: 1rem;
+    width: 1rem;
+  }

@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+    --deepDark: #0D0D0D;
+    --color-btn-dark: #262626;
+    --light: #D9D9D9;
+    --white: #F2F2F2;
+    --blue: #0597F2;
+    --blueDarker: #0460D9;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: var(--white);
+    position: relative;
+    color: var(--light);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header a {
+    text-decoration: none;
+    color: inherit;
+}
+
+header ul {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 16px;
+}
+
+header {
+    background-color: var(--deepDark);
+    padding: 12px;
+}
+
+header .nav-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+header .nav-item.title {
+    margin-right: auto;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 6px 0;
+}
+
+.btn-login, .btn-signup {
+    display: block;
+    padding: 6px 12px;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: ease-in-out 0.15s;
+}
+
+.btn-login:hover, .btn-signup:hover {
+    transform: scale(0.96);
+}
+
+.btn-login:hover {
+    background-color: var(--color-btn-dark);
+}
+
+.btn-login {
+    border: var(--white) solid 1px;
+}
+
+.btn-signup {
+    background-color: var(--white);
+    color: var(--deepDark);
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    margin: 5% 0;
+    padding-bottom: 2.5rem;
+}
+
+.form-container {
+    display: block;
+    width: 500px;
+    background-color: var(--light);
+    border-radius: 6px;
+    margin: 0 auto;
+    color: var(--deepDark);
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.form-elem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 12px 0;
+}
+
+.form-elem label {
+    flex: 1;
+    text-align: left;
+    margin-right: 10px;
+}
+
+.form-elem:last-child {
+    margin-bottom: 0;
+}
+
+.form-elem input {
+    flex: 2;
+    margin-left: 10px;
+    border-radius: 3px;
+    border: 2px solid var(--white);
+}
+
+.form-elem .form-register-btn {
+    font-weight: 500;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--deepDark);
+    color: var(--light);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: ease-in-out 0.15s;
+}
+
+.form-elem .form-register-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.form-elem .form-register-btn:hover:not(button:disabled) {
+    background-color: var(--color-btn-dark);
+    transform: scale(0.98);
+}
+
+.form-elem .form-login-btn {
+    font-weight: 500;
+    width: 49%;
+    padding: 10px;
+    background-color: var(--deepDark);
+    color: var(--light);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: ease-in-out 0.15s;
+}
+
+.form-elem .form-login-btn:hover {
+    background-color: var(--color-btn-dark);
+    transform: scale(0.98);
+}
+
+.form-elem .btn-42 {
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    width: 49%;
+    padding: 10px;
+    background-color: #00babc;
+    color: var(--light);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: ease-in-out 0.15s;
+}
+
+.form-elem .btn-42:hover {
+    background-color: #00a2a5;
+    transform: scale(0.98);
+}
+
+footer {
+    background-color: var(--deepDark);
+    color: var(--light);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 12px;
+}
+
+.footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-item {
+    margin: 0 8px;
+}
+
+.form-elem .form-advice {
+    margin: 0 auto;
+    font-size: small;
+}
+
+.form-elem .form-advice .form-advice-link {
+    font-weight: 500;
+    color: var(--blue);
+    text-decoration: none;
+    transition: ease-in-out 0.15s;
+}
+
+.form-elem .form-advice .form-advice-link:hover {
+    color: var(--blueDarker);
+}

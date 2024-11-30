@@ -1,0 +1,65 @@
+<section id="profile">
+	<article>
+		<h2 class="title">Social</h2>
+		<hr>
+		<div class="social-contents-containter">
+			<div class="tab">
+				<button class="tabLinks active" data-tab="allUsers">List of all users</button>
+				<button class="tabLinks" data-tab="friendList">Friends list</button>
+				<button class="tabLinks" data-tab="friendRequests">Friend requests</button>
+			</div>
+			<div id="allUsers" class="tabContent active">
+				<ul id="user-list" class="user-list">
+					<!-- Users will be dynamically inserted here -->
+				</ul>
+			</div>
+			<div id="friendList" class="tabContent">
+				<ul id="friend-list" class="friend-list">
+					<!-- Friends will be dynamically inserted here -->
+				</ul>
+			</div>
+			<div id="friendRequests" class="tabContent">
+				<ul id="incoming-requests" class="incoming-requests">
+					<!-- Friends will be dynamically inserted here -->
+				</ul>
+			</div>
+		</div>
+	</article>
+</section>
+
+
+{% comment %} <section id="profile">
+	<h2>Profile</h2>
+	<div>
+		<h3>List of all users:</h3>
+		<ul id="user-list">
+			<!-- Users will be dynamically inserted here -->
+		</ul>
+	</div>
+	<div>
+		<h3>List of Friends:</h3>
+		<ul id="friend-list">
+			<!-- Friends will be dynamically inserted here -->
+		</ul>
+	</div>
+	<div>
+		<h3>List of Incoming Friend Requests:</h3>
+		<ul id="incoming-requests">
+			<!-- Incoming friend requests will be dynamically inserted here -->
+		</ul>
+	</div>
+	<div>
+		<h3>Add a Friend</h3>
+		<form id="add-friend-form">
+			<input type="text" id="friend-username" placeholder="Friend's Username">
+			<button type="submit">Add Friend</button>
+		</form>
+	</div>
+	<div>
+		<h3>Delete a Friend</h3>
+		<form id="friend-delete-form">
+			<input type="text" id="friend-delete" placeholder="Friend's Username">
+			<button type="submit">Delete Friend</button>
+		</form>
+	</div>
+</section> {% endcomment %}

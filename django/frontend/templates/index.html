@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcendence</title>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pong.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/social.css' %}">
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+    <script>
+        window.csrfToken = "{{ csrf_token }}";
+    </script>
+</head>
+<body>
+    <header>
+            <a href="/" class="item title" data-link>Transcendence.</a>
+            <nav>
+                <ul>
+                    <li class="item"><a href="/localgame" data-link>Pong</a></li>
+                    <li class="item"><a href="/tournament" data-link>Tournament</a></li>
+                    <li class="item"><a href="/chat" data-link>Social</a></li>
+                </ul>
+                
+            </nav>
+            <div class="container-right">
+                <div id="dropdownNavbar" class="dropdown">
+                    <span id="user-status" href="#" class="item">Checking user status...</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>
+                    <div class="dropdown-menu">
+                        <ul class="dropdown-container">
+                            <li class="dropdown-item"><a href="/profile" data-link>Profile</a></li>
+                            <li class="dropdown-item"><a href="/social" data-link>Friends list</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <form id="logout-form" action="/logout/" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="item">Logout</button>
+                </form>
+            </div>
+    </header>
+    <div id="banner-container"></div>
+    <main id="app">
+        <!-- Dynamic content will be rendered here -->
+    </main>
+
+    <footer>
+        <ul>
+            <li class="footer-item">&copy; 2024 Quadruple A.</li>
+            <li class="footer-item">All rights reserved.</li>
+        </ul>
+    </footer>
+    <script type='module' src='{% static 'js/index.js' %}'></script>
+    <script>
+        document.getElementById('logout-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            fetch('/logout/', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'logged_out') {
+                    window.location.href = '/login/';
+                }
+            });
+        });
+
+		async function checkUserStatus() {
+			try {
+				const response = await fetch('/api/profiles/me');
+				if (response.ok) {
+					const data = await response.json();
+					const displayName = data.alias !== null && data.alias.trim() !== "" ? data.alias : data.username;
+					document.getElementById('user-status').innerHTML = displayName;
+				} else {
+					window.location.href = '/login/';
+				}
+			} catch (error) {
+				console.error('Error fetching user status:', error);
+				window.location.href = '/login/';
+			}
+		}
+
+        checkUserStatus();
+
+		const dropdownElem = document.getElementById('dropdownNavbar');
+        const dropdownMenuElem = document.querySelector('header .container-right .dropdown .dropdown-menu');
+		const userStatusElem = document.getElementById('user-status');
+
+		userStatusElem.addEventListener('mouseover', showDropdown);
+		dropdownElem.addEventListener('mouseover', showDropdown);
+
+		userStatusElem.addEventListener('mouseout', hideDropdown);
+		dropdownElem.addEventListener('mouseout', hideDropdown);
+
+		function showDropdown() {
+			dropdownMenuElem.classList.add('visible');
+		}
+
+		function hideDropdown() {
+			dropdownMenuElem.classList.remove('visible');
+		}
+    </script>
+</body>
+</html>

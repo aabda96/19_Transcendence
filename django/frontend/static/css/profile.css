@@ -1,0 +1,203 @@
+.input-editable-container {
+	display: flex;
+	position: relative;
+	width: 50%;
+	margin: 5px auto;
+	height: 3rem;
+}
+
+article .first-group {
+	display: flex;
+	width: 100%;
+	align-items: center;
+}
+
+.input-editable-container label {
+	position: absolute;
+	top: 4px;
+	left: 1rem;
+	font-size: 12px;
+	font-weight: 500;
+	pointer-events: none;
+	z-index: 1;
+}
+
+.input-editable-container input {
+	width: 100%;
+	outline: none;
+	border: 1px solid gray;
+	background: white;
+	padding: 1.4rem 1rem 0.2rem;
+	border-radius: 4px;
+	color: black;
+
+}
+
+.inputsGroup {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.input-editable-container .input-editable-edit, .input-editable-container .input-editable-save {
+	position: absolute;
+    right: 1rem;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.input-editable-container input:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.input-editable-container input:not(:disabled) ~ .input-editable-edit {
+	display: none;
+}
+
+.input-editable-container input:disabled ~ .input-editable-save {
+	display: none;
+}
+
+.profile-picture {
+	margin: 24px 0;
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
+	border-radius: 100%;
+}
+
+.profile-picture-container {
+	position: relative;
+	width: max-content;
+	cursor: pointer;
+	border-radius: 100%;
+}
+
+.profile-picture-container svg {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: white;
+	opacity: 1;
+	transition: ease-in 0.1s;
+}
+
+.profile-picture-container:hover img {
+	filter: blur(1px)
+}
+
+.profile-picture-container:not(:hover) svg {
+	opacity: 0;
+}
+
+.score-grid {
+	margin: 24px 0;
+	display: grid;
+	gap: 12px;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.score-card {
+	display: flex;
+	gap: 24px;
+	align-items: center;
+	padding: 12px 24px;
+	border-radius: 4px;
+	background-color: white;
+	border: 1px solid #8f8f8f;
+}
+
+.score-card-text p {
+	margin: 0;
+}
+
+.score-card-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.score-card-text p:first-child {
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+.score-card-text p:last-child {
+	color: black;
+	font-size: 25px;
+	line-height: 25px;
+}
+
+.dropdownMatchHistory {
+	border: 1px solid #ccc;
+	padding: 0.5rem 0;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.dropdownMatchHistory h3 {
+	text-align: center;
+}
+
+.dropdownMatchHistory .matchHistoryContainer {
+	opacity: 0;
+	visibility: hidden;
+	height: 0;
+    overflow: hidden;
+	transition: ease-in-out 0.5s;
+}
+
+.dropdownMatchHistory .matchHistoryContainer.visible {
+	opacity: 1;
+	visibility: visible;
+	height: auto;
+}
+
+#matchHistory ul {
+	padding: 0 1rem;
+	list-style: none;
+	display: flex;
+	justify-content: space-between;
+	margin: 0.5rem 1rem;
+	border-radius: 5px;
+}
+
+#matchHistory ul li {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 1rem 0;
+	width: 100%;
+	height: 100%;
+	border: 1px solid #ccc;
+	background-color: #e1e1e1;
+}
+
+#matchHistory ul li:first-child {
+	border-radius: 5px 0 0 5px;
+}
+
+#matchHistory ul li:last-child {
+	border-radius: 0 5px 5px 0;
+}
+
+#matchHistory ul li svg {
+	width: 20px;
+	height: 20px;
+}
+
+#matchHistory ul li:nth-child(2) {
+	font-weight: 500;
+}
+
+#matchHistory ul li.win {
+	color: green;
+	background-color: #f6fff3;
+}
+
+#matchHistory ul li.lose {
+	color: red;
+	background-color: #ffe1e1;
+}

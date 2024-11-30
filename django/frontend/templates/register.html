@@ -1,0 +1,259 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="/index/" class="nav-item title">Transcendence.</a>
+            <nav>
+                <ul>
+                    <li class="nav-item"><a class="btn-login" href="/login/">Log in</a></li>
+                    <li class="nav-item"><a class="btn-signup" href="/register/">Sign up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section>
+                <div id="infoFillMsg">
+                    <div id="infoFillMsgUsername" class="alert lg info">
+                        <svg id="alertSuccessUserSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check hidden"><path d="M20 6 9 17l-5-5"/></svg>
+                        <svg id="alertInfoUserSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                        <strong>Username :</strong><br>
+                        <ul>
+                            <li id="userLength" class="item">Must be between 5 and 15 characters long.</li>
+                        </ul>
+                    </div>
+                    <div id="infoFillMsgPassword" class="alert lg info">
+                        <svg id="alertSuccessPassSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check hidden"><path d="M20 6 9 17l-5-5"/></svg>
+                        <svg id="alertInfoPassSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                        <strong>Password :</strong><br>
+                        <ul>
+                            <li id="passLength" class="item">Must be between 8 and 20 characters long.</li>
+                            <li id="passUppercase" class="item">Password must contain at least one uppercase letter.</li>
+                            <li id="passLowercase" class="item">Must contain at least one lowercase letter.</li>
+                            <li id="passDigit" class="item">Must contain at least one digit.</li>
+                        </ul>
+                    </div>
+                </div>
+            <article>
+                <div id="error-message"></div>
+                <form class="form-container" id="register-form">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                    <div class="form-title">
+                        <h1>Register</h1>
+                    </div>
+                    <div class="form-elem">
+                        <p class="form-advice">You already have an account ? <a class="form-advice-link" href="/login/">Log in</a></p>
+                    </div>
+                    <div id="checkForm">
+                        <div class="form-elem">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+                        <div class="form-elem">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <div class="form-elem">
+                            <label for="password-confirm">Confirm Password:</label>
+                            <input type="password" id="password-confirm" name="password-confirm" required>
+                        </div>
+                        <div class="form-elem">
+                            <button id="btnRegister" class="form-register-btn" type="submit" disabled>Register</button>
+                        </div>
+                    </div>
+                </form>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <ul class="footer-container">
+            <li class="footer-item">&copy; 2024 Quadruple A.</li>
+            <li class="footer-item">All rights reserved.</li>
+        </ul>
+    </footer>
+
+    <script>
+        const   messageHowToFill = (user, pass1, pass2) => {           
+            const   isGoodLengthUser = user.value.length >= 5 && user.value.length <= 15;
+            const   isSamePassword = pass1.value === pass2.value;
+            const   isGoodLengthPass = pass1.value.length >= 8 && pass1.value.length <= 20;
+            const   infoFillMsgUsername = document.getElementById('infoFillMsgUsername');
+            const   alertInfoUserSvg = document.getElementById('alertInfoUserSvg');
+            const   alertSuccessUserSvg = document.getElementById('alertSuccessUserSvg'); 
+            const   userLength = document.getElementById('userLength');
+            const   passLength = document.getElementById('passLength');
+            const   passUppercase = document.getElementById('passUppercase');
+            const   passLowercase = document.getElementById('passLowercase');
+            const   passDigit = document.getElementById('passDigit');
+            const   infoFillMsgPassword = document.getElementById('infoFillMsgPassword');
+            const   alertInfoPassSvg = document.getElementById('alertInfoPassSvg');
+            const   alertSuccessPassSvg = document.getElementById('alertSuccessPassSvg');
+            let   checkUppercase = false;
+            let   checkLowercase = false;
+            let   checkDigit = false;
+            
+            for (let i = 0; i < password.value.length; i++) {
+                if (password.value[i] >= 'a' && password.value[i] <= 'z')
+                    checkLowercase = true;
+                if (password.value[i] >= 'A' && password.value[i] <= 'Z')
+                    checkUppercase = true;
+                if (password.value[i] >= '0' && password.value[i] <= '9')
+                    checkDigit = true;
+            }
+
+    //  Check if rules are true, add txtGreen class in info banner
+            if (isGoodLengthUser)
+                userLength.classList.add('txtGreen');
+            else
+                if (userLength.classList.contains('txtGreen'))
+                    userLength.classList.remove('txtGreen');
+            if (isGoodLengthPass)
+                passLength.classList.add('txtGreen');
+            else
+                if (passLength.classList.contains('txtGreen'))
+                    passLength.classList.remove('txtGreen');
+            if (checkUppercase)
+                passUppercase.classList.add('txtGreen');
+            else
+                if (passUppercase.classList.contains('txtGreen'))
+                    passUppercase.classList.remove('txtGreen');
+            if (checkLowercase)
+                passLowercase.classList.add('txtGreen');
+            else
+                if (passLowercase.classList.contains('txtGreen'))
+                    passLowercase.classList.remove('txtGreen');
+            if (checkDigit)
+                passDigit.classList.add('txtGreen');
+            else
+                if (passDigit.classList.contains('txtGreen'))
+                    passDigit.classList.remove('txtGreen');
+            if (isSamePassword && isGoodLengthPass) {
+                if (pass1.classList.contains('inputError'))
+                    pass1.classList.remove('inputError');
+                if (pass2.classList.contains('inputError'))
+                    pass2.classList.remove('inputError');
+                pass1.classList.add('inputSuccess');
+                pass2.classList.add('inputSuccess');
+            } else {
+                if (pass1.classList.contains('inputSuccess'))
+                    pass1.classList.remove('inputSuccess');
+                if (pass2.classList.contains('inputSuccess'))
+                    pass2.classList.remove('inputSuccess');
+                pass1.classList.add('inputError');
+                pass2.classList.add('inputError');
+            }
+
+    //  if all username rules are true, alert turn to succes else turn to info
+            if (isGoodLengthUser) {
+                if (infoFillMsgUsername.classList.contains('info'))
+                    infoFillMsgUsername.classList.remove('info');
+                infoFillMsgUsername.classList.add('success');
+                if (alertSuccessUserSvg.classList.contains('hidden'))
+                    alertSuccessUserSvg.classList.remove('hidden');
+                alertInfoUserSvg.classList.add('hidden')
+            } else {
+                if (infoFillMsgUsername.classList.contains('success'))
+                    infoFillMsgUsername.classList.remove('success');
+                infoFillMsgUsername.classList.add('info');
+                if (alertInfoUserSvg.classList.contains('hidden'))
+                    alertInfoUserSvg.classList.remove('hidden');
+                alertSuccessUserSvg.classList.add('hidden')
+            }
+    
+    //  if all password rules are true, alert turn to succes else turn to info
+            if (pass1.value.length > 0 && pass2.value.length > 0 && isSamePassword && isGoodLengthPass && checkUppercase && checkLowercase && checkDigit) {
+                if (infoFillMsgPassword.classList.contains('info'))
+                    infoFillMsgPassword.classList.remove('info');
+                infoFillMsgPassword.classList.add('success');
+                if (alertSuccessPassSvg.classList.contains('hidden'))
+                    alertSuccessPassSvg.classList.remove('hidden');
+                alertInfoPassSvg.classList.add('hidden')
+            } else {
+                if (infoFillMsgPassword.classList.contains('success'))
+                    infoFillMsgPassword.classList.remove('success');
+                infoFillMsgPassword.classList.add('info');
+                if (alertInfoPassSvg.classList.contains('hidden'))
+                    alertInfoPassSvg.classList.remove('hidden');
+                alertSuccessPassSvg.classList.add('hidden')
+            }
+            
+            if (isGoodLengthUser && pass1.value.length > 0 && pass2.value.length > 0 && isSamePassword && isGoodLengthPass && checkUppercase && checkLowercase && checkDigit)
+                return true;
+            else
+                return false;
+        }
+
+const   checkInput = (user, pass1, pass2) => {
+    const   btnRegister = document.getElementById('btnRegister');
+
+    if (messageHowToFill(user, pass1, pass2))
+        btnRegister.removeAttribute('disabled');
+    else
+        btnRegister.setAttribute('disabled', '');
+}
+
+        const checkForm = document.getElementById('checkForm');
+        checkForm.addEventListener('input', () => {
+            const username = document.getElementById('username');
+            const passListener = document.getElementById('password');
+            const passCListener = document.getElementById('password-confirm');
+
+            checkInput(username, passListener, passCListener);
+        });
+
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const passwordConfirm = document.getElementById('password-confirm').value;
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            if (password !== passwordConfirm) {
+                const bodyError = `
+                    <div class="alert danger">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+                        <p><strong>Registration failed:</strong> Passwords do not match !</p>
+                    </div>
+                    `
+                document.getElementById('error-message').innerHTML = bodyError;
+                return;
+            }
+
+            fetch('/register/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify({ username, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    window.location.href = '/login/';
+                } else {
+                    const bodyError = `
+                    <div class="alert danger">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+                        <p><strong>Registration failed:</strong> ${data.error} !</p>
+                    </div>
+                    `
+                    document.getElementById('error-message').innerHTML = bodyError;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

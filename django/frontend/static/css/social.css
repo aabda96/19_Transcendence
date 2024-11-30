@@ -1,0 +1,140 @@
+article .social-contents-containter {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+}
+
+article .social-contents-containter .tab {
+	overflow: hidden;
+	border: 1px solid #ccc;
+	background-color: #f1f1f1;
+	width: 100%;
+	display: flex;
+	border-radius: 4px;
+}
+
+article .social-contents-containter .tab button {
+	flex: 1;
+	padding: 8px 14px;
+	border: 1px solid #ccc;
+	transition: ease-in-out 0.25s;
+}
+
+article .social-contents-containter .tab button:hover {
+	background-color: #ddd;
+	border: 1px solid #ddd;
+}
+
+article .social-contents-containter .tab button.active {
+	background-color: #ddd;
+	border-bottom: 2px solid #000000;
+	font-weight: 500;
+	transition: none;
+}
+
+article .social-contents-containter .tabContent {
+	display: none;
+	margin-top: 12px;
+	width: 100%;
+}
+
+article .social-contents-containter .tabContent.active {
+	display: block;
+}
+
+.user-list, .friend-list, .incoming-requests {
+	list-style: none;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 12px;
+	width: 100%;
+}
+
+.user-list .item, .friend-list .item, .incoming-requests .item {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	border: 1px solid #ccc;
+	padding: 6px 0 6px 12px;
+	border-radius: 4px;
+	max-width: 100%;
+}
+
+.user-list .item .svg-addFriend, .user-list .item .svg-addFriend, .friend-list .item .svg-trash {
+	position: absolute;
+	right: 0;
+	margin: auto 0.5rem;
+	padding: 3px;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+}
+
+.user-list .item .svg-outgoingFriend{
+	position: absolute;
+	right: 0;
+	margin: auto 0.5rem;
+	padding: 3px;
+	border-radius: 3px;
+	cursor: default;
+	border: 2px solid #FACC15;
+}
+
+.user-list .item .svg-isFriend {
+	position: absolute;
+	right: 0;
+	margin: auto 0.5rem;
+	padding: 3px;
+	border-radius: 3px;
+	cursor: default;
+	border: 2px solid #4ed349;
+}
+
+.user-list .item .svg-addFriend:hover {
+	border: 1px solid #4ed349;
+}
+
+
+.user-list .item svg, .incoming-requests .item svg, .friend-list .item svg {
+	height: 15px;
+	width: 15px;
+}
+
+.incoming-requests .button-container {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0 0.5rem;
+}
+
+.incoming-requests .confirm-friend-request, .incoming-requests .refuse-friend-request {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 3px;
+}
+
+.incoming-requests .confirm-friend-request:hover {
+	border: 1px solid #4ed349;
+}
+
+.incoming-requests .refuse-friend-request:hover, .friend-list .item .svg-trash:hover {
+	border: 1px solid #db1d1d;
+}
+.svg-online {
+	margin-right: 40px;
+	padding: 3px;
+	border-radius: 3px;
+	border: none;
+	background: none;
+	cursor: default;
+  }
+  
+  .svg-online svg {
+	height: 15px;
+	width: 15px;
+  }
+  
+  .item {
+	display: flex;
+	align-items: center;
+  }

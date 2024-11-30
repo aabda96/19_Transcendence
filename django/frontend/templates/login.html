@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="/index/" class="nav-item title">Transcendence.</a>
+            <nav>
+                <ul>
+                    <li class="nav-item"><a class="btn-login" href="/login/">Log in</a></li>
+                    <li class="nav-item"><a class="btn-signup" href="/register/">Sign up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section>
+            <article>
+                <div id="error-message"></div>
+                <form class="form-container" id="login-form">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                    <div class="form-title">
+                        <h1>Log in</h1>
+                    </div>
+                    <div class="form-elem">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-elem">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <hr>
+                    <div class="form-elem">
+                        <a href="https://{{ hostname }}/api/oauth/login" class="btn-42">42</a>
+                        <button class="form-login-btn" type="submit">Login</button>
+                    </div>
+                    <div class="form-elem">
+                        <p class="form-advice">You don't have an account ? <a class="form-advice-link" href="/register/">Sign up</a></p>
+                    </div>
+                </form>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <ul class="footer-container">
+            <li class="footer-item">&copy; 2024 Quadruple A.</li>
+            <li class="footer-item">All rights reserved.</li>
+        </ul>
+    </footer>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            fetch('/login/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify({ username, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    window.location.href = '/';
+                } else {
+                    const bodyError = `
+                    <div class="alert danger">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+                        <p><strong>Login failed:</strong> ${data.error} !</p>
+                    </div>
+                    `
+                    document.getElementById('error-message').innerHTML = bodyError;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

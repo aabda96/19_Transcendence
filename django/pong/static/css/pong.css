@@ -1,0 +1,205 @@
+
+.tournamentArticle {
+    width: 75%;
+    margin: 20px 1rem;
+}
+
+.tournamentArticle:last-child {
+    width: 25%;
+}
+
+.tournamentUsers {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.tournamentUsers .invitedUser {
+    border: 1px solid black;
+    padding: 5px 0;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-left: 5px solid #8f8f8f;
+    border-bottom: 4px solid #ccc;
+    font-weight: 500;
+}
+
+.tournamentFooter {
+    display: flex;
+    justify-content: center;
+}
+
+.btnTournament {
+    margin-top: 10px;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #3da523;
+    border-left: 5px solid #3da523;
+    border-bottom: 5px solid #60cd44;
+    background-color: #e0ffd8;
+    font-weight: 500;
+    transition: ease-in-out 0.2s;
+}
+
+.btnTournament:hover:not(:disabled) {
+    border: 1px solid #3da523;
+}
+
+.btnTournament:disabled {
+    cursor: not-allowed;
+    border: 1px solid #de3030;
+    border-left: 5px solid #a52323;
+    border-bottom: 5px solid #de3030;
+    background-color: #ffd8d8;
+    opacity: 0.6;
+}
+
+.btnTournament:active:not(:disabled) {
+    border: 1px solid #3da523;
+    box-shadow: inset 0px 0px 3px 1px #939393;
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    flex-direction: column;
+}
+
+.container {
+    margin: 10px;
+    text-align: center;
+}
+
+.gameCanvas {
+    display: flex;
+    justify-content: center;
+}
+
+.gameContainer {
+    display: flex;
+    justify-content: center;
+}
+
+canvas {
+    border: 2px solid #333;
+    background-color: #fff;
+}
+
+textarea, input[type="text"], input[type="button"] {
+    margin: 5px;
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 2rem;
+    margin-top: 50px;
+  }
+  .player {
+    text-align: center;
+  }
+  .score {
+    font-size: 3rem;
+    color: blue;
+  }
+  /* .contentPongArticle {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.contentPongArticle form {
+    display: flex;
+}
+
+.groupPongInput {
+    margin: 1rem 0 0.2rem 0;
+    display: flex;
+    gap: 5px;
+}
+
+.groupLabelInput {
+    position: relative;
+}
+
+.groupLabelInput input:disabled {
+    cursor: not-allowed;
+}
+
+.groupLabelInput input {
+    padding: 5px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.groupLabelInput input:focus {
+    outline: none;
+}
+
+.groupLabelInput label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: ease-in-out 0.2s;
+    pointer-events: none;
+    opacity: 0.5;
+    font-size: 0.88rem;
+}
+
+.groupLabelInput:focus-within label {
+    all: unset;
+    position: absolute;
+    top: -5px;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: small;
+    font-weight: 500;
+    transition: ease-in-out 0.2s;
+    white-space: nowrap;
+    word-break: keep-all;
+}
+
+.groupLabelInput label.active {
+    all: unset;
+    position: absolute;
+    top: -5px;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: small;
+    font-weight: 500;
+    transition: ease-in-out 0.2s;
+}
+
+.groupLabelInput:focus-within label::after {
+   opacity: 1;
+}
+
+.btnPong {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #e1e1e1;
+    font-weight: 500;
+    width: 100%;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 5px solid #ccc;
+    border-left: 5px solid #afafaf;
+    transition: ease-in-out 0.2s;
+}
+
+.btnPong:hover,
+.btnPong:not(:hover):active {
+    border: 1px solid #ccc;
+}
+
+.btnPong:active {
+    box-shadow: inset 0px 0px 3px 1px #939393;
+} */
+
+
